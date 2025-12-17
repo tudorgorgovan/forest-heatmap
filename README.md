@@ -1,10 +1,21 @@
-# 🌲 Timber Transport Heatmap
+## 👥 Team LoveLinux++
+
+**ZebraHack 3.0 Finalists - 3rd Place 🏆**
+
+- **Aylin Zulchefil** - Frontend & Design
+- **Tudor Gorgovan** - Data Analysis & Algorithms
+- **Raducanu Denis** - Map Logic & API Integration
+- **Turtoiu Eduard** - UI/UX & Performance Optimization
+
+---
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![ZebraHack 3.0](https://img.shields.io/badge/ZebraHack-3.0-blue.svg)](https://zebrahack.ro/)
 [![Live Demo](https://img.shields.io/badge/demo-live-success.svg)](https://tudorgorgovan.github.io/forest-heatmap/)
 
-Interactive web application for visualizing timber transport hotspots in Romania using real-time data from SUMAL 2.0. Built with MapLibre GL JS and vanilla JavaScript for the ZebraHack 3.0 hackathon.
+# 🌲 Timber Transport Heatmap
+
+Developed for the ZebraHack 3.0 Hackathon at UPB, this interactive web application bridges the gap between raw governmental data and environmental oversight. By processing live feeds from Romania's SUMAL 2.0 system, the platform identifies and visualizes timber transport 'hotspots' across the country. It serves as a strategic monitoring tool designed to enhance transparency, optimize forestry inspections, and provide a clear, data-driven overview of wood mobilization in real-time.
 
 ![Timber Transport Heatmap Preview](assets/screenshot_hackathon.png)
 
@@ -18,27 +29,43 @@ Interactive web application for visualizing timber transport hotspots in Romania
 - Detailed popup information for each hotspot
 
 ### 📊 Advanced Analytics
-- Dynamic company list in visible map area
-- Automatic performance scoring based on volume and trips
-- Detailed statistics (volume, trips, performance metrics)
-- Data export and persistence between pages (LocalStorage)
+- Performance scoring engine with volume/trips ratio calculation and LocalStorage persistence for cross-page data export
 
 ### 🎨 Modern UI/UX
-- Slate/Emerald color palette with dark mode
-- Smooth animations and micro-interactions
-- Glassmorphism effects and gradients
-- Responsive design for desktop and mobile
-- Material Design principles
+- Slate/Emerald dark theme with glassmorphism effects, CSS animations, and responsive Material Design
 
-### 🔧 Technical Features
-- MapLibre GL JS 3.3.1 for interactive rendering
-- Integration with ZebraHack 3.0 API for live data
-- Vanilla JavaScript (ES6+) - no frameworks
-- Modular CSS architecture
-- Font Awesome 6.4.0 icons
-- Google Fonts (Inter)
+## 🔧 Technical Implementation
 
-## � Quick Start
+### MapLibre GL JS Integration
+- **Heatmap Layer**: Custom color interpolation with density-based gradients
+- **Circle Layers**: Dynamic visibility toggling for intensity filtering (low/medium/high)
+- **Popup System**: Custom-styled tooltips with company details and transport volumes
+- **Map Controls**: Region-based navigation with `flyTo` animations and smooth transitions
+- **Expression-based Styling**: MapLibre expressions for zoom-dependent rendering
+
+### Data Processing Pipeline
+```javascript
+API (SUMAL 2.0) → fetch() → JSON parsing → GeoJSON transformation → MapLibre layers
+```
+- **Data Source**: ZebraHack 3.0 API with real-time timber transport records
+- **Format**: GeoJSON with Point geometries for hotspot coordinates
+- **Aggregation**: Company-level grouping with volume and trip count calculations
+- **Caching**: LocalStorage for offline persistence and performance optimization
+
+### Performance Optimizations
+- **Debounced Search**: 300ms delay on city search input to reduce API calls
+- **Lazy Loading**: Markers loaded on-demand based on visible map bounds
+- **Efficient Updates**: GeoJSON updates only for changed features, not full re-render
+- **GPU Acceleration**: CSS `will-change` property for smooth animations
+- **Event Delegation**: Single event listener for multiple markers
+
+### Architecture
+- **Modular JavaScript**: ES6 modules with separate concerns (map logic, analytics, API client)
+- **CSS Variables**: Centralized theming with custom properties for colors and spacing
+- **Event-driven**: Asynchronous data fetching with `async/await` and Promise-based error handling
+- **Responsive**: Mobile-first design with CSS Grid and Flexbox layouts
+
+## 🚀 Quick Start
 
 ### Prerequisites
 - A modern web browser (Chrome, Firefox, Safari, Edge)
@@ -73,32 +100,7 @@ npx serve
 http://localhost:8000
 ```
 
-## 📁 Project Structure
-
-```
-forest-heatmap/
-├── index.html              # Landing page with explanations
-├── map.html                # Main interactive map
-├── analytics.html          # Analytics and performance scoring
-├── about-analytics.html    # Methodology and explanations
-├── styles/
-│   ├── style.css          # Common styles (header, footer, buttons)
-│   ├── index.css          # Landing page specific styles
-│   ├── map.css            # Map and overlay styles
-│   ├── analytics.css      # Analytics page styles
-│   └── region-dropdown.css # Region dropdown styles
-├── scripts/
-│   ├── header.js          # Dynamic header with logo and navigation
-│   ├── map.js             # Map logic (MapLibre, filters, popups)
-│   ├── analytics.js       # Performance scoring and statistics
-│   ├── common.js          # Common utility functions
-│   └── zebrahack_client.js # API client for live data
-└── assets/
-    ├── Poza_logo.png      # Team logo
-    └── screenshot_hackathon.png # Heatmap preview screenshot
-```
-
-## � Usage
+## 📖 Usage
 
 1. **Start at index.html** to understand the concept of heatmaps and hotspots
 2. **Navigate to map.html** to explore the interactive map
@@ -111,6 +113,16 @@ forest-heatmap/
 The project is deployed on GitHub Pages and can be accessed at:
 
 **[https://tudorgorgovan.github.io/forest-heatmap/](https://tudorgorgovan.github.io/forest-heatmap/)**
+
+## 🛠️ Technologies Used
+
+- **Frontend**: HTML5, CSS3 (modular), JavaScript (vanilla ES6+)
+- **Mapping**: MapLibre GL JS 3.3.1
+- **Design**: Slate/Emerald palette with CSS animations
+- **API**: ZebraHack 3.0 API integration with real data from SUMAL 2.0 (Ministry of Environment)
+- **Storage**: LocalStorage for data persistence
+- **Icons**: Font Awesome 6.4.0
+- **Fonts**: Google Fonts (Inter)
 
 ## 🔧 Configuration
 
@@ -144,32 +156,9 @@ Modify the color gradient in `scripts/map.js`:
 ]
 ```
 
-## �️ Technologies Used
-
-- **Frontend**: HTML5, CSS3 (modular), JavaScript (vanilla ES6+)
-- **Mapping**: MapLibre GL JS 3.3.1
-- **Design**: Slate/Emerald palette with CSS animations
-- **API**: ZebraHack 3.0 API integration with real data from SUMAL 2.0 (Ministry of Environment)
-- **Storage**: LocalStorage for data persistence
-- **Icons**: Font Awesome 6.4.0
-- **Fonts**: Google Fonts (Inter)
-
-## 👥 Team
-
-**LoveLinux++** - ZebraHack 3.0 Finalists
-
-- **Aylin Zulchefil** - Frontend & Design
-- **Tudor Gorgovan** - Data Analysis & Algorithms
-- **Raducanu Denis** - Map Logic & API Integration
-- **Turtoiu Eduard** - UI/UX & Performance Optimization
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🏆 Acknowledgments
 
-- **ZebraHack 3.0** - Hackathon Web Technologies, ACS UPB
+- **ZebraHack 3.0** - Hackathon Web Technologies, Faculty of Automatic Control and Computers, University POLITEHNICA of Bucharest
 - **SUMAL 2.0** - Ministry of Environment timber tracking system
 - **Inspectorul Padurii** - Public portal for forest monitoring
 
