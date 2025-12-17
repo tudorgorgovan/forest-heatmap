@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harta Transporturilor de Lemn</title>
+    <meta name="description" content="Vizualizarea zonelor cu activitate intensa in transportul de masa lemnoasa.">
+
+    <!-- Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <script src="scripts/header.js" defer></script>
+</head>
+
+<body data-page="intro">
+
+    <div class="hero-section">
+        <div class="container animate-fade-in">
+            <div class="logo-badge">
+                <i class="fa-solid fa-tree"></i> TRACKING FOREST ACTIVITY
+            </div>
+            <h1>Harta <span class="highlight">transporturilor</span> de lemn</h1>
+            <p class="subtitle">Monitorizam intensitatea curselor de lemn pe baza punctelor GPS si evidentiem zonele in
+                care traficul forestier se repeta anormal de des.</p>
+
+            <div class="row gap-3">
+                <a href="map.html" class="cta-button primary">
+                    <i class="fa-solid fa-map-location-dot"></i> Vizualizeaza Harta
+                </a>
+                <a href="about-analytics.html" class="cta-button secondary"
+                    style="background: rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2)">
+                    <i class="fa-solid fa-chart-pie"></i> Unelte de Analiza
+                </a>
+            </div>
+        </div>
+
+        <!-- animatia cu camionul -->
+        <div class="transition-container">
+            <div class="truck-wrapper">
+                <div class="truck-body">
+                    <div class="truck-cab">
+                        <div class="window"></div>
+                    </div>
+                    <div class="truck-chassis"></div>
+                    <div class="wheels">
+                        <div class="wheel front"></div>
+                        <div class="wheel back"></div>
+                        <div class="wheel back-2"></div>
+                    </div>
+                </div>
+                <div class="truck-cargo">
+                    <!-- gratarul alb -->
+                    <div class="cage-grid"></div>
+                    <!-- barne de lemn -->
+                    <div class="log l1"></div>
+                    <div class="log l2"></div>
+                    <div class="log l3"></div>
+                </div>
+            </div>
+            <div class="road-line"></div>
+        </div>
+    </div>
+
+    <!-- sectiunea cu explicatii -->
+    <section class="info-section">
+        <div class="container">
+            <div class="grid-2-cols">
+                <div class="text-content">
+                    <h2>Ce sunt hotspot-urile?</h2>
+                    <p>Un <strong>hotspot</strong> reprezinta o zona geografica in care mii de pozitii GPS provenite din
+                        SUMAL 2.0 se strang pe aceleasi drumuri intr-un interval scurt. Cand intensitatea creste,
+                        heatmap-ul scoate la suprafata rutele reale parcurse de camioane si arata cum se redistribuie
+                        presiunea pe paduri.</p>
+                    <p>Vizibilitatea acestor concentrari este vitala pentru cetateni, jurnalisti si ONG-uri. Punctele
+                        fierbinti pot indica defrisari mascate, transporturi care se repeta pe timp de noapte sau
+                        mutarea volumelor spre depozite opace. Cunoscand unde se strange traficul, comunitatile pot
+                        cere controale targetate acolo unde apare riscul.</p>
+                    <p>Traseele sunt colectate de <strong>SUMAL 2.0</strong>, registrul digital al Ministerului
+                        Mediului,
+                        iar <strong>Inspectorul Padurii</strong> este portalul public prin care oricine poate verifica
+                        un
+                        aviz si poate confrunta declaratiile cu miscarile captate prin GPS. Aceasta pagina introduce
+                        contextul inainte de a accesa Hartă Interactivă.</p>
+                    <p class="text-highlight">
+                        Transformam punctele ZebraHack 3.0 intr-o vizualizare intuitiva: cu cat stratul este mai
+                        luminos,
+                        cu atat mai multe camioane trec pe aceeasi ruta.
+                    </p>
+                </div>
+                <div class="visual-content">
+                    <div class="heatmap-demo">
+                        <!-- demo heatmap -->
+                        <div class="heat-point p1"></div>
+                        <div class="heat-point p2"></div>
+                        <div class="heat-point p3"></div>
+                        <div class="map-overlay-text">
+                            <a href="map.html"
+                                style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-layer-group"></i> Vizualizare Heatmap
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- sectiunea ghid -->
+    <section class="guide-section">
+        <div class="container">
+            <h2>Cum citesti un heatmap?</h2>
+            <p class="guide-intro">Un heatmap coloreaza harta in functie de densitatea punctelor GPS. Valorile mici
+                raman
+                reci si translucide, iar valorile mari aprind suprafata si semnalizeaza rute folosite obsesiv.</p>
+
+            <div class="intensity-legend">
+                <div class="legend-card">
+                    <div class="legend-color-box" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);"></div>
+                    <h4>Activitate Scazuta</h4>
+                    <p>Zone cu trafic redus. Putine transporturi inregistrate.</p>
+                </div>
+                <div class="legend-card">
+                    <div class="legend-color-box" style="background: linear-gradient(135deg, #eab308, #fbbf24);"></div>
+                    <h4>Activitate Medie</h4>
+                    <p>Trafic moderat. Zona necesita monitorizare.</p>
+                </div>
+                <div class="legend-card">
+                    <div class="legend-color-box" style="background: linear-gradient(135deg, #ef4444, #f87171);"></div>
+                    <h4>Activitate Majora</h4>
+                    <p>Hotspot critic. Concentrare masiva de transporturi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- carduri SUMAL si Inspector -->
+    <section class="transparency-section">
+        <div class="container">
+            <div class="cards-grid">
+                <!-- card flux live -->
+                <div class="t-card special">
+                    <div class="icon-circle"><i class="fa-solid fa-satellite-dish"></i></div>
+                    <div class="card-content">
+                        <h3>Flux de date live</h3>
+                        <p>API-ul ZebraHack 3.0 livreaza celule agregate pregatite pentru harta, fara a rula un backend.
+                        </p>
+                        <div class="live-indicator"><span class="dot"></span> Online</div>
+                    </div>
+                </div>
+
+                <!-- card SUMAL -->
+                <div class="t-card">
+                    <div class="icon-circle"><i class="fa-solid fa-server"></i></div>
+                    <div class="card-content">
+                        <h3>SUMAL 2.0</h3>
+                        <p>Registrul digital prin care Ministerul Mediului urmareste toate transporturile de lemn si
+                            stocheaza punctele GPS.</p>
+                        <a href="https://sumal-map.ro/" target="_blank" class="mini-link">Vezi documentatia <i
+                                class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- card Inspector Padurii -->
+                <div class="t-card">
+                    <div class="icon-circle"><i class="fa-solid fa-magnifying-glass-location"></i></div>
+                    <div class="card-content">
+                        <h3>Inspectorul Padurii</h3>
+                        <p>Portalul public care permite verificarea unui aviz si confruntarea lui cu traseul real al
+                            camionului.</p>
+                        <a href="https://inspectorulpadurii.ro/" target="_blank" class="mini-link">Verifica sursa <i
+                                class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 LoveLinux++ | Hackathon Challenge</p>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

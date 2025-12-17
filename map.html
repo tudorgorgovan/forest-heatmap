@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harta transporturilor de lemn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.3.1/dist/maplibre-gl.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/region-dropdown.css">
+    <link rel="stylesheet" href="styles/map.css">
+    <script src="https://unpkg.com/maplibre-gl@3.3.1/dist/maplibre-gl.js" defer></script>
+    <script src="scripts/header.js" defer></script>
+    <script src="scripts/map.js" defer></script>
+</head>
+
+<body data-page="map" data-app-key="LoveLinux++">
+    <main class="map-shell">
+        <section class="map-header">
+            <div class="container">
+                <div class="map-header-content">
+                    <div>
+                        <h1>Explorează punctele fierbinți</h1>
+                        <p>Harta folosește datele colectate in perioada 2023-2025 pentru a trasa celulele cu cele mai
+                            multe poziții GPS.</p>
+                    </div>
+                    <div id="map-status" class="map-status map-status--idle">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Gata de explorat</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="map-filters">
+            <div class="container map-filters-grid">
+                <div class="filter-card">
+                    <p class="eyebrow">Caută un oraș</p>
+                    <p class="filter-hint">Introdu numele orașului pentru a naviga direct la locatie.</p>
+                    <div class="city-search-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="city-search-input" placeholder="Ex: Bucuresti, Cluj-Napoca..." />
+                        <button id="city-search-btn" class="search-btn">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </button>
+                    </div>
+                    <div id="search-status" class="search-status"></div>
+                </div>
+                <div class="filter-card">
+                    <p class="eyebrow">Alege o regiune</p>
+                    <p class="filter-hint">Selectează zona care te interesează pentru a încarcă datele si a mări automat
+                        harta.</p>
+                    <div class="region-dropdown">
+                        <button class="region-dropdown-toggle" id="region-dropdown-toggle">
+                            <span class="region-dropdown-label">Zone</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="region-list" id="region-list" style="display: none;">
+                            <button class="region-chip" data-region="all">Toata harta</button>
+                            <button class="region-chip" data-region="muntenia">Muntenia</button>
+                            <button class="region-chip" data-region="transilvania">Transilvania</button>
+                            <button class="region-chip" data-region="dobrogea">Dobrogea</button>
+                            <button class="region-chip" data-region="moldova">Moldova</button>
+                            <button class="region-chip" data-region="maramures">Maramures</button>
+                            <button class="region-chip" data-region="bucovina">Bucovina</button>
+                            <button class="region-chip" data-region="banat">Banat</button>
+                            <button class="region-chip" data-region="oltenia">Oltenia</button>
+                            <button class="region-chip" data-region="crisana">Crisana</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-card">
+                    <p class="eyebrow">Filtrează după intensitate</p>
+                    <p class="filter-hint">Controleaza straturile vizibile in funcție de greutatea celulelor.</p>
+                    <div class="intensity-options">
+                        <label class="intensity-chip">
+                            <input type="checkbox" data-intensity="low" checked>
+                            <span><i class="fa-solid fa-circle text-low"></i> Scăzută</span>
+                        </label>
+                        <label class="intensity-chip">
+                            <input type="checkbox" data-intensity="medium" checked>
+                            <span><i class="fa-solid fa-circle text-medium"></i> Medie</span>
+                        </label>
+                        <label class="intensity-chip">
+                            <input type="checkbox" data-intensity="high" checked>
+                            <span><i class="fa-solid fa-circle text-high"></i> Ridicată</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="map-content">
+            <div class="map-stage">
+                <button id="toggle-overlay" class="map-overlay-toggle" title="Arată/Ascunde informații">
+                    <i class="fa-solid fa-layer-group"></i>
+                </button>
+                <div id="map" aria-label="Harta interactiva a transporturilor"></div>
+                <div class="map-overlay" id="map-overlay">
+                    <div class="overlay-card">
+                        <p class="overlay-title">Operatori dominanti</p>
+                        <ul id="operators-list"></ul>
+                    </div>
+                    <div class="overlay-card legend-card">
+                        <p class="overlay-title">Scală de intensitate</p>
+                        <div class="legend-scale" aria-hidden="true">
+                            <span>Redus</span>
+                            <div class="legend-bar"></div>
+                            <span>Critic</span>
+                        </div>
+                        <div class="legend-labels">
+                            <span><i class="fa-solid fa-circle text-low"></i> activitate Scăzută</span>
+                            <span><i class="fa-solid fa-circle text-high"></i> activitate Ridicată</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="map-companies">
+                <div class="map-companies-inner">
+                    <div class="companies-header">
+                        <div>
+                            <p class="eyebrow">Companii în cadru</p>
+                            <h2>Lista actorilor activi</h2>
+                        </div>
+                        <div class="companies-meta">
+                            <span id="companies-count" class="pill">0 companii</span>
+                            <span id="companies-state" class="pill muted">Mută harta pentru a începe</span>
+                        </div>
+                    </div>
+                    <div id="companies-list" class="companies-grid">
+                        <p class="companies-empty">Muta sau mărește harta pentru a vedea companiile din zona selectata.
+                        </p>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <div class="container" style="text-align: center; margin: 40px 0; padding-bottom: 40px;">
+            <a href="analytics.html" id="btn-analyze-context" class="cta-button secondary"
+                style="display:inline-flex; gap:10px; align-items:center; width: auto; padding: 12px 24px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.2);">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                Analizează Spor de Lucru
+            </a>
+        </div>
+
+        <section style="display:none;">
+        </section>
+    </main>
+</body>
+
+</html>

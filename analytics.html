@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analiza Avansata - ZebraHack 3.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/analytics.css">
+    <script src="scripts/header.js" defer></script>
+    <script src="scripts/analytics.js" defer></script>
+    <style>
+        .input-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--landing-text-secondary);
+        }
+
+        .input-control {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .input-control:focus {
+            outline: none;
+            border-color: var(--landing-accent);
+        }
+
+        .result-box {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result-box.danger {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .result-box.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+        }
+
+        .risk-badge-high {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body data-page="analytics">
+
+    <div class="analytics-hero">
+        <div class="container">
+            <h1>Centrul de <span class="highlight">Analiza</span> Spor de Lucru</h1>
+            <p class="subtitle">Statistici detaliate despre performanță si activitatea companiilor de transport lemn.
+            </p>
+        </div>
+    </div>
+
+    <section class="container">
+
+        <!-- analiza din harta -->
+        <div class="analytics-card" id="context-analysis-card" style="display:none;">
+            <h2><i class="fa-solid fa-chart-line"></i> Statistici Spor de Lucru</h2>
+            <p class="filter-hint">Analiza companiilor din zona vizualizată pe hartă, cu metrici de performanță bazate
+                pe volum si frecvență transporturilor.</p>
+
+            <div id="context-results" class="features-list"
+                style="margin-top:20px; display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:15px;">
+                <!-- generat automat -->
+            </div>
+        </div>
+
+        <!-- stare goala -->
+        <div class="analytics-card" id="empty-state" style="text-align:center; padding:60px 32px;">
+            <i class="fa-solid fa-chart-column"
+                style="font-size:4rem; color:var(--landing-accent); margin-bottom:20px; display:block;"></i>
+            <h2>Nicio zonă selectată</h2>
+            <p class="filter-hint" style="max-width:500px; margin:20px auto;">Pentru a analiza sporul de lucru al
+                companiilor, navighează pe
+                hartă către o zonă de interes, apoi apasă butonul <strong>"Analizează Spor de Lucru"</strong>.
+            </p>
+            <a href="map.html" class="cta-button primary" style="margin-top:20px; display:inline-flex; gap:10px;">
+                <i class="fa-solid fa-arrow-left"></i>
+                Înapoi la Hartă
+            </a>
+        </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

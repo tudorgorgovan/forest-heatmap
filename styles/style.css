@@ -1,0 +1,334 @@
+/* Stiluri comune - folosite pe toate paginile */
+
+:root {
+  /* variabile culori si spacing */
+  --landing-bg-dark: #0f172a;
+  --landing-bg-card: #1e293b;
+  --landing-bg-card-hover: #334155;
+
+  --landing-text-primary: #f8fafc;
+  --landing-text-secondary: #94a3b8;
+
+  --landing-accent: #10b981;
+  --landing-accent-glow: rgba(16, 185, 129, 0.3);
+
+  --heat-low: #3b82f6;
+  --heat-med: #eab308;
+  --heat-high: #ef4444;
+
+  --spacing-container: 1200px;
+  --transition: 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--landing-bg-dark);
+  color: var(--landing-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* navbar sticky */
+.site-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(4, 10, 25, 0.85);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--landing-text-primary);
+  text-decoration: none;
+}
+
+/* logo cu pinguin */
+.brand img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  object-position: center;
+  background: transparent;
+  mix-blend-mode: screen;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.2),
+    0 0 10px rgba(255, 255, 255, 0.1),
+    0 8px 20px rgba(0, 0, 0, 0.45);
+  transition: all 0.3s ease;
+  transform: scale(1.15);
+}
+
+/* efect hover logo */
+
+.brand img:hover {
+  transform: scale(1.05) rotate(3deg);
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.3),
+    0 0 15px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.1),
+    0 12px 30px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-text .eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--landing-accent);
+  font-weight: 700;
+}
+
+.brand-text .brand-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--landing-text-primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-links a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--landing-text-secondary);
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: #fff;
+  border-color: rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.nav-links a:focus-visible {
+  outline: 2px solid var(--landing-accent);
+  outline-offset: 4px;
+}
+
+.nav-links a.active {
+  color: #fff;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
+}
+
+/* stiluri text */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--landing-text-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 90%;
+  max-width: var(--spacing-container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.highlight {
+  color: var(--landing-accent);
+  position: relative;
+  display: inline-block;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--landing-accent);
+  font-weight: 700;
+}
+
+/* butoane principale */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+.cta-button.primary {
+  background-color: var(--landing-accent);
+  color: #fff;
+  box-shadow: 0 4px 20px var(--landing-accent-glow);
+}
+
+.cta-button.primary:hover {
+  transform: translateY(-2px);
+  background-color: #059669;
+  box-shadow: 0 8px 25px var(--landing-accent-glow);
+}
+
+.cta-button.secondary {
+  color: var(--landing-accent);
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  background: transparent;
+  box-shadow: none;
+}
+
+.cta-button.secondary:hover {
+  background: rgba(16, 185, 129, 0.1);
+  transform: translateY(-2px);
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid var(--landing-accent);
+  outline-offset: 4px;
+}
+
+/* clase pentru culori heatmap */
+.color-low {
+  color: var(--heat-low);
+}
+
+.color-med {
+  color: var(--heat-med);
+}
+
+.color-high {
+  color: var(--heat-high);
+}
+
+.text-low {
+  color: var(--heat-low);
+}
+
+.text-medium {
+  color: #eab308;
+}
+
+.text-high {
+  color: var(--heat-high);
+}
+
+/* pill-uri si badge-uri */
+.pill {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--landing-text-primary);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+}
+
+.pill.muted {
+  color: var(--landing-text-secondary);
+}
+
+.pill.loading {
+  color: #facc15;
+  border-color: rgba(250, 204, 21, 0.4);
+}
+
+.pill.error {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.pill.success {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.badge-online {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid #22c55e;
+  color: #22c55e;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  background: rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}
+
+/* footer simplu */
+.main-footer {
+  padding: 40px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #0b1120;
+  color: var(--landing-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* ajustari mobile */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01s !important;
+  }
+}
